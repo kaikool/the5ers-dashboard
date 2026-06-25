@@ -15,84 +15,62 @@ export default function DetailPanel({ account, detail, onClose, formatCurrency }
   const risk = calculateRiskBuffer(account, detail);
 
   const getRiskMessage = () => {
-    if (risk.dailyStatus === 'danger') return 'CRITICAL RISK: Max Daily Loss approach. Stop trading immediately.';
-    if (risk.overallStatus === 'danger') return 'CRITICAL RISK: Overall Drawdown approach. Account at risk.';
-    if (risk.dailyStatus === 'warning') return 'WARNING: Elevated risk level. Reduce position sizing.';
-    return 'SYSTEM NORMAL: Account metrics within safe boundaries.';
+    if (risk.dailyStatus === 'danger') return 'NGUY HIỂM: Sắp chạm mức Lỗ Tối Đa Trong Ngày. Ngừng giao dịch ngay.';
+    if (risk.overallStatus === 'danger') return 'NGUY HIỂM: Sắp chạm mức Lỗ Tối Đa Tổng Thể. Tài khoản rủi ro cao.';
+    if (risk.dailyStatus === 'warning') return 'CẢNH BÁO: Mức độ rủi ro tăng cao. Giảm khối lượng giao dịch.';
+    return 'BÌNH THƯỜNG: Các thông số tài khoản đều trong ngưỡng an toàn.';
   };
 
   const metrics = [
-    { label: 'Balance', value: formatCurrency(detail?.balance ?? account.balance) },
-    { label: 'Equity', value: formatCurrency(detail?.equity ?? account.equity) },
-    { label: 'P&L', value: formatCurrency(detail?.pnl ?? account.pnl), color: (detail?.pnl ?? account.pnl) > 0 ? 'var(--success-neon)' : (detail?.pnl ?? account.pnl) < 0 ? 'var(--danger-neon)' : 'inherit' },
-    { label: 'Daily DD', value: detail ? `${detail.dailyDrawdown.toFixed(2)}%` : 'N/A' },
-    { label: 'Max DD', value: detail ? `${detail.maxDrawdown.toFixed(2)}%` : 'N/A' },
-    { label: 'Win Rate', value: detail ? `${detail.winRate.toFixed(1)}%` : 'N/A' },
-    { label: 'Trades', value: detail ? String(detail.totalTrades) : 'N/A' },
-    { label: 'Profit Factor', value: detail ? detail.profitFactor.toFixed(2) : 'N/A' },
+    { label: 'Số Dư (Balance)', value: formatCurrency(detail?.balance ?? account.balance) },
+    { label: 'Vốn Thực (Equity)', value: formatCurrency(detail?.equity ?? account.equity) },
+    { label: 'Lợi Nhuận (P&L)', value: formatCurrency(detail?.pnl ?? account.pnl), color: (detail?.pnl ?? account.pnl) > 0 ? 'var(--success-neon)' : (detail?.pnl ?? account.pnl) < 0 ? 'var(--danger-neon)' : 'inherit' },
+    { label: 'Sụt Giảm Ngày (Daily DD)', value: detail?.dailyDrawdown !== undefined ? `${detail.dailyDrawdown.toFixed(2)}%` : 'N/A' },
+    { label: 'Sụt Giảm Tối Đa (Max DD)', value: detail?.maxDrawdown !== undefined ? `${detail.maxDrawdown.toFixed(2)}%` : 'N/A' },
+    { label: 'Tỉ Lệ Thắng', value: detail?.winRate !== undefined ? `${detail.winRate.toFixed(1)}%` : 'N/A' },
+    { label: 'Tổng Số Lệnh', value: detail?.totalTrades !== undefined ? String(detail.totalTrades) : 'N/A' },
+    { label: 'Hệ Số Lợi Nhuận', value: detail?.profitFactor !== undefined ? detail.profitFactor.toFixed(2) : 'N/A' },
   ];
 
   return (
     <div className="detail-panel">
-      <div className="detail-header">
-        <button className="btn-close" onClick={onClose} style={{ border: 'none', background: 'transparent', padding: 0, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
-          <span>←</span> Back to Accounts
+      <div className="detail-header" style={{ padding: '0 24px', paddingTop: 24 }}>
+        <button className="btn-close" onClick={onClose} style={{ marginBottom: 24 }}>
+          <span>←</span> Quay lại
         </button>
         <div>
-          <h2 className="text-hero" style={{ fontSize: 24 }}>{account.name}</h2>
-          <div style={{ marginTop: 4, fontFamily: 'monospace', color: 'var(--text-muted)', fontSize: 12 }}>
-            {account.accountId} // {account.type.toUpperCase()} // {account.status.toUpperCase()}
+          <h2 className="text-hero">{account.name}</h2>
+          <div style={{ marginTop: 4, color: 'var(--text-muted)', fontSize: 14 }}>
+            {account.accountId} // {account.type.toUpperCase()}
           </div>
         </div>
       </div>
 
-      <div className={`risk-alert ${risk.dailyStatus}`}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
-          <span className={`status-dot ${risk.dailyStatus}`} />
-          <span style={{ fontSize: 13, fontWeight: 600, color: '#fff', letterSpacing: '0.05em' }}>RISK MONITOR</span>
+      <div style={{ padding: '0 24px' }}>
+        <div className="metrics-grid-detail">
+          {metrics.map(m => (
+            <div key={m.label} className="metric-box">
+              <div className="text-label">{m.label}</div>
+              <div className="text-number-huge" style={{ fontSize: 24, color: m.color || 'var(--text-base)' }}>{m.value}</div>
+            </div>
+          ))}
         </div>
-        <div style={{ color: `var(--${risk.dailyStatus}-neon)`, fontSize: 14, marginBottom: 16 }}>
-          {getRiskMessage()}
-        </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 32 }}>
-          <div>
-            <div className="text-label">Daily Buffer</div>
-            <div className="text-number-huge" style={{ fontSize: 20 }}>{formatCurrency(risk.dailyBuffer)}</div>
-          </div>
-          <div>
-            <div className="text-label">Rec. Risk (1%)</div>
-            <div className="text-number-huge" style={{ fontSize: 20 }}>{formatCurrency(account.balance * 0.01)}</div>
-          </div>
-          <div>
-            <div className="text-label">Target Rem.</div>
-            <div className="text-number-huge" style={{ fontSize: 20 }}>{formatCurrency(risk.targetRemaining)}</div>
-          </div>
-        </div>
-      </div>
-
-      <div className="metrics-grid-detail">
-        {metrics.map(m => (
-          <div key={m.label} className="metric-box">
-            <div className="text-label">{m.label}</div>
-            <div className="text-number-huge" style={{ fontSize: 20, color: m.color || 'var(--text-base)' }}>{m.value}</div>
-          </div>
-        ))}
       </div>
 
       <DrawdownChart data={mockDrawdownData} />
-      <TradeHistory trades={mockTradeHistory} formatCurrency={formatCurrency} />
+      <TradeHistory trades={detail?.trades || []} formatCurrency={formatCurrency} />
 
       {detail?.challenge && (
         <div style={{ marginTop: 48 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
             <span className="status-dot safe" style={{ background: 'var(--text-muted)', color: 'var(--text-muted)' }} />
-            <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-base)', letterSpacing: '0.05em' }}>EVALUATION SPECS</span>
+            <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-base)', letterSpacing: '0.05em' }}>THÔNG SỐ THỬ THÁCH</span>
           </div>
           <div className="metrics-grid-detail">
-            <div className="metric-box"><div className="text-label">Phase</div><div className="text-number-huge" style={{ fontSize: 16 }}>{detail.challenge.phase}</div></div>
-            <div className="metric-box"><div className="text-label">Target</div><div className="text-number-huge" style={{ fontSize: 16 }}>{formatCurrency(detail.challenge.profitTarget)}</div></div>
-            <div className="metric-box"><div className="text-label">Progress</div><div className="text-number-huge" style={{ fontSize: 16 }}>{detail.challenge.profitTargetProgress.toFixed(1)}%</div></div>
-            <div className="metric-box"><div className="text-label">Days</div><div className="text-number-huge" style={{ fontSize: 16 }}>{detail.challenge.daysTraded} / {detail.challenge.minTradingDays}</div></div>
+            <div className="metric-box"><div className="text-label">Giai Đoạn</div><div className="text-number-huge" style={{ fontSize: 16 }}>{detail.challenge.phase}</div></div>
+            <div className="metric-box"><div className="text-label">Mục Tiêu</div><div className="text-number-huge" style={{ fontSize: 16 }}>{formatCurrency(detail.challenge.profitTarget)}</div></div>
+            <div className="metric-box"><div className="text-label">Tiến Độ</div><div className="text-number-huge" style={{ fontSize: 16 }}>{detail.challenge.profitTargetProgress.toFixed(1)}%</div></div>
+            <div className="metric-box"><div className="text-label">Số Ngày Trade</div><div className="text-number-huge" style={{ fontSize: 16 }}>{detail.challenge.daysTraded} / {detail.challenge.minTradingDays}</div></div>
           </div>
         </div>
       )}
@@ -101,7 +79,7 @@ export default function DetailPanel({ account, detail, onClose, formatCurrency }
         <div style={{ marginTop: 48 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
             <span className="status-dot safe" style={{ background: 'var(--text-muted)', color: 'var(--text-muted)' }} />
-            <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-base)', letterSpacing: '0.05em' }}>TRADING RULES</span>
+            <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-base)', letterSpacing: '0.05em' }}>QUY TẮC GIAO DỊCH</span>
           </div>
           <div className="mobile-list">
             {detail.rules.map((rule, i) => (
@@ -114,8 +92,8 @@ export default function DetailPanel({ account, detail, onClose, formatCurrency }
                   </div>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'monospace', fontSize: 13 }}>
-                  <div style={{ color: 'var(--text-dim)' }}>Current: <span style={{ color: 'var(--text-base)' }}>{rule.currentValue}</span></div>
-                  <div style={{ color: 'var(--text-dim)' }}>Limit: <span style={{ color: 'var(--text-base)' }}>{rule.limit}</span></div>
+                  <div style={{ color: 'var(--text-dim)' }}>Hiện tại: <span style={{ color: 'var(--text-base)' }}>{rule.currentValue}</span></div>
+                  <div style={{ color: 'var(--text-dim)' }}>Giới hạn: <span style={{ color: 'var(--text-base)' }}>{rule.limit}</span></div>
                 </div>
               </div>
             ))}
@@ -125,7 +103,7 @@ export default function DetailPanel({ account, detail, onClose, formatCurrency }
 
       {!detail && (
         <div style={{ marginTop: 48, textAlign: 'center', color: 'var(--text-dim)', fontSize: 13, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
-          Simulated Data Only. Run local scraper for live metrics.
+          Đang tải dữ liệu lệnh giao dịch từ mây...
         </div>
       )}
     </div>

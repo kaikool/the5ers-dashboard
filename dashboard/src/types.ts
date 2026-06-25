@@ -27,11 +27,22 @@ export interface AccountOverview {
   currency: string;
 }
 
+export interface Purchase {
+  id: string;
+  productName: string;
+  buyingPower: number;
+  price: number;
+  currency: string;
+  status: string;
+  createdAt: string;
+}
+
 export interface Profile {
   userName: string;
   email: string;
   scrapedAt: string;
   accounts: AccountOverview[];
+  purchases?: Purchase[];
 }
 
 export interface ChallengeInfo {

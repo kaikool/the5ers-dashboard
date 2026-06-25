@@ -11,46 +11,57 @@ interface Props {
 export default function AccountCard({ account, selected, onClick, formatCurrency }: Props) {
   const risk = calculateRiskBuffer(account, null);
   
-  const pnlClass = account.pnl > 0 ? 'value-green' : account.pnl < 0 ? 'value-red' : '';
-  const progressPercent = Math.min(100, Math.max(0, ((account.balance * 0.1 - risk.targetRemaining) / (account.balance * 0.1)) * 100));
+  const getRiskMessage = () => {
+    if (risk.dailyStatus === 'danger') return 'DỪNG TRADE: Đã Chạm Mức Lỗ Ngày';
+    if (risk.overallStatus === 'danger') return 'NGUY HIỂM: Đã Chạm Mức Sụt Giảm Tối Đa';
+    if (risk.dailyStatus === 'warning') return 'CẢNH BÁO: Giảm Thiểu Rủi Ro Lại';
+    return 'AN TOÀN: Có Thể Giao Dịch Bình Thường';
+  };
 
   return (
     <div className={`neo-card ${selected ? 'selected' : ''}`} onClick={onClick}>
       <div className="card-top">
         <div>
           <div className="card-title">{account.name}</div>
-          <div className="card-id">{account.accountId}</div>
         </div>
-        <div>
-          <span className="tag">{account.type}</span>
-        </div>
+        <span className="tag">{account.type === 'demo' ? 'DEMO' : account.type.toUpperCase()}</span>
+      </div>
+
+      <div className={`risk-banner ${risk.dailyStatus}`}>
+        <span className={`status-dot ${risk.dailyStatus}`} />
+        {getRiskMessage()}
       </div>
 
       <div style={{ marginBottom: 32 }}>
-        <div className="text-label" style={{ marginBottom: 4 }}>Balance</div>
-        <div className="text-number-huge">{formatCurrency(account.balance)}</div>
+        <div className="text-label" style={{ marginBottom: 4 }}>Biên Độ Ngày Còn Lại</div>
+        <div className="text-number-huge" style={{ color: risk.dailyStatus === 'safe' ? 'var(--success-neon)' : `var(--${risk.dailyStatus}-neon)` }}>
+          {formatCurrency(risk.dailyBuffer)}
+        </div>
       </div>
 
-      <div className="metrics-row">
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 24 }}>
         <div>
-          <div className="text-label">P&amp;L</div>
-          <div className={`card-title ${pnlClass}`} style={{ fontSize: 18 }}>{formatCurrency(account.pnl)}</div>
+          <div className="text-label">Mục Tiêu Còn Lại</div>
+          <div style={{ fontSize: 20, fontWeight: 700 }}>{formatCurrency(risk.targetRemaining)}</div>
         </div>
         <div style={{ textAlign: 'right' }}>
-          <div className="text-label">Daily Buffer</div>
-          <div className="card-title" style={{ fontSize: 18, color: risk.dailyStatus === 'safe' ? 'var(--success-neon)' : `var(--${risk.dailyStatus}-neon)` }}>
-            {formatCurrency(risk.dailyBuffer)}
+          <div className="text-label">Lợi Nhuận (P&amp;L)</div>
+          <div className={account.pnl > 0 ? 'value-green' : account.pnl < 0 ? 'value-red' : ''} style={{ fontSize: 20, fontWeight: 700 }}>
+            {formatCurrency(account.pnl)}
           </div>
         </div>
       </div>
 
-      <div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: 'var(--text-muted)' }}>
-          <span>Overall Buffer: <strong style={{ color: 'var(--text-base)' }}>{formatCurrency(risk.overallBuffer)}</strong></span>
-          <span>Target: <strong style={{ color: 'var(--text-base)' }}>{formatCurrency(risk.targetRemaining)}</strong></span>
+      <div style={{ padding: '16px', background: 'var(--bg-subtle)', borderRadius: '12px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13 }}>
+          <span className="text-muted">Số Dư (Balance)</span>
+          <span style={{ fontWeight: 700 }}>{formatCurrency(account.balance)}</span>
         </div>
-        <div className="line-progress">
-          <div className="line-fill" style={{ width: `${progressPercent || 50}%`, background: risk.overallStatus === 'safe' ? 'var(--accent-cyan)' : `var(--${risk.overallStatus}-neon)` }} />
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, marginTop: 8 }}>
+          <span className="text-muted">Biên Độ Rủi Ro Tổng Thể</span>
+          <span style={{ fontWeight: 700, color: risk.overallStatus === 'safe' ? 'var(--success-neon)' : `var(--${risk.overallStatus}-neon)` }}>
+            {formatCurrency(risk.overallBuffer)}
+          </span>
         </div>
       </div>
     </div>

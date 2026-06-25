@@ -1,0 +1,748 @@
+{
+  "message": "Success",
+  "data": {
+    "userId": "c7e984df-d505-4af2-95cf-148d0bc64880",
+    "firstName": "Tran Dinh",
+    "lastName": "Phuc",
+    "email": "phuk.td@gmail.com",
+    "country": "VN",
+    "emailMarketing": null,
+    "mongoUserIdFivers": "c7e984df-d505-4af2-95cf-148d0bc64880",
+    "mongoUserIdTtp": null,
+    "descopeUserId": "U38AaLO16JdLJjbcUgEJif4fLH0s",
+    "_id": "668ba55b2c40320a208c5396",
+    "tsUsers": [
+      {
+        "accountType": "evaluation",
+        "externalId": "24120872",
+        "password": "U2FsdGVkX19U4OTNXk3T/NnZX66JNSx4rcDNHyjCnZY=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24120872"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24124345",
+        "password": "U2FsdGVkX1+Ba27h3jxDrkkq8iSdv8Cv/6v5pu1vPnY=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24124345"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24126985",
+        "password": "U2FsdGVkX1/JJ2EXLhJKrwPLkntsVYkgRrZmMiYxn+c=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24126985"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24135141",
+        "password": "U2FsdGVkX18b04PhWlCbQ134WJSG0bWFc+ScRMzwSMk=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24135141"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24140718",
+        "password": "U2FsdGVkX1920VNsAQWZjdsVzTGtqx+Qv88fOCC7A4Q=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24140718"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24143527",
+        "password": "U2FsdGVkX1/uJmGq8uiC88x6gSEULqeuouq9FzoTtYM=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24143527"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24147531",
+        "password": "U2FsdGVkX1+eBs4UqzvqCnK2mTlLmasUpQfjQ+DoOL8=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24147531"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24155184",
+        "password": "U2FsdGVkX19yVto/mYzCCfmGPc5E9ExHEnnqqS/wRwA=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24155184"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24170803",
+        "password": "U2FsdGVkX194Gq6ZhjN9gjPJx4R/qcZrATUrtGjcPiU=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24170803"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24177637",
+        "password": "U2FsdGVkX1+9YSw0IYBJffTuHvbavoP06INpZW8s90s=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24177637"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24183823",
+        "password": "U2FsdGVkX1+wQZYioMyFj3RmCT9sfN/TS4RRSC7wCyY=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24183823"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24186432",
+        "password": "U2FsdGVkX18EmDlONCxKTp3oXZHlqplsjKJzmxeut00=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24186432"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24188805",
+        "password": "U2FsdGVkX18zoKiTX/ubgeGOMkhw594j8PSSG2GYNVg=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24188805"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24220559",
+        "password": "U2FsdGVkX1+30E6KVJqzxglNMOZKyBvlfPazpET/SL4=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24220559"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24239398",
+        "password": "U2FsdGVkX1/KX6LScgzSYDdQfuKETni8n/Xy73M4LCM=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24239398"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24263252",
+        "password": "U2FsdGVkX19kaX2BJjpvbrXganVuLzohUUXS4lruzVk=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24263252"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24268173",
+        "password": "U2FsdGVkX1/Zg10kVXFT7CEii/nHIuoyoWRhJ0QMWRY=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24268173"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24291195",
+        "password": "U2FsdGVkX1+wnJPGQBMmivlp875Q9ar7h2+j12aqp+Q=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24291195"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24383430",
+        "password": "U2FsdGVkX19+hl8APk1X4cQohT2KAvdG8iOiaeAeXNU=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24383430"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24403136",
+        "password": "U2FsdGVkX1+Gpz1VUJeYmUo4suZ+5quWxEX5XGZAY7I=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24403136"
+      },
+      {
+        "accountType": "demo",
+        "externalId": "309456",
+        "password": "U2FsdGVkX1+T6R5hSGbTO8Cp80KPm+Z7zMRmV3mheM4=",
+        "tradingSystem": "meta-trader-xp",
+        "login": "309456"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24430225",
+        "password": "U2FsdGVkX1/Z8wE7rfqiQCDuGLZlBRNNs3Fu3MT0fn0=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24430225"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24464431",
+        "password": "U2FsdGVkX1/jFQ0WsAVbWVbOaKmVEInmp9Y5WEIb5jQ=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24464431"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24517592",
+        "password": "U2FsdGVkX1/WGmhuCy3K5nm+RqgdY+Jxwg79D9Ck+Ak=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24517592"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "24532928",
+        "password": "U2FsdGVkX1894D49xi6H5PwXwayyOIG/gmqIvVzPaHc=",
+        "tradingSystem": "meta-trader-5",
+        "login": "24532928"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25014356",
+        "password": "U2FsdGVkX18kDj/CgJzvG2Am/F1xYQlMTRg8mlhUVJI=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25014356"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25094732",
+        "password": "U2FsdGVkX1/bjxqfKxLb4PhnuATNm9dtN5VGqrIlrDs=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25094732"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25151248",
+        "password": "U2FsdGVkX1/Qru9TgtrK1s+wBtYrUj8L6dREe/wX1Jg=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25151248"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25153152",
+        "password": "U2FsdGVkX18bvhG2hZvL5T5IeNxIE39Rt9uWghnYVc4=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25153152"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25192489",
+        "password": "U2FsdGVkX19ZaHWazNo+WOV70FB1xfSgERqjBIJwyis=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25192489"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25205761",
+        "password": "U2FsdGVkX1+4E8/Ey4iODbXMt/9HqlI3znrfhjskxUk=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25205761"
+      },
+      {
+        "accountType": "funded",
+        "externalId": "25223660",
+        "password": "U2FsdGVkX1/1pd0cswDN/U4yYjZ3ICRO1x9fyC7iVVk=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25223660"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25268161",
+        "password": "U2FsdGVkX184vg+v2Brls4ZQbFPuyoQfc47M4xUo5LA=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25268161"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25290938",
+        "password": "U2FsdGVkX1/mIv4ATfQ0ZMblU+13cyoXoCWa8wEACpE=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25290938"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25303678",
+        "password": "U2FsdGVkX1+BF5MFfoI6JccOUM78cwxK5FveiCgXTzs=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25303678"
+      },
+      {
+        "accountType": "funded",
+        "externalId": "25320174",
+        "password": "U2FsdGVkX195H4qDyCKz3Q4W6M2oQcWqHl6CZeWePl8=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25320174"
+      },
+      {
+        "accountType": "funded",
+        "externalId": "25354345",
+        "password": "U2FsdGVkX18n1zQ1zXeBf/13xW/DOI4OpCuQDPNy0Ig=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25354345"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25354445",
+        "password": "U2FsdGVkX18nUCmbGzztj5u4JeHkQvkLgdswmUGcDGU=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25354445"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25371289",
+        "password": "U2FsdGVkX1+TS3WLzOwDxUKJ8c31HZjJ3levBlWJGvg=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25371289"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25383586",
+        "password": "U2FsdGVkX1/G3srzeQLQK4YIe3KfFHgKjFB3p9SId/8=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25383586"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25394405",
+        "password": "U2FsdGVkX19ejN9zoHflLqCyDtsAOOu8HBaw3aSfAO4=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25394405"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25404198",
+        "password": "U2FsdGVkX1/BvqQ9syKH+ZwbNO5iTjJXOxX9RyVxBkA=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25404198"
+      },
+      {
+        "accountType": "funded",
+        "externalId": "25416084",
+        "password": "U2FsdGVkX193OItAjb8XJRjdYrbu1Cg1dtY1/G1AT70=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25416084"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25439044",
+        "password": "U2FsdGVkX18qm02hcjJYvqfUjTX2kwi7IrAloy3b+g4=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25439044"
+      },
+      {
+        "accountType": "funded",
+        "externalId": "25448490",
+        "password": "U2FsdGVkX1/WOr9WwyAOsxAPVW6gIGq/y1HYylCwv0A=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25448490"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25451891",
+        "password": "U2FsdGVkX198xrqrv/nJlkSYDFuZkNzDArk60acpBhM=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25451891"
+      },
+      {
+        "accountType": "funded",
+        "externalId": "25459652",
+        "password": "U2FsdGVkX18o5YVJS4/pM2JfyXgSjBIE78XrXjZwY7U=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25459652"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25469834",
+        "password": "U2FsdGVkX1+HjXhEfInhH1Kj5IP3XQq/SvjHzsDtRV8=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25469834"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25478636",
+        "password": "U2FsdGVkX1+WCtejZrnu7LdkzKQ/qJqhKJCipLEDZpE=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25478636"
+      },
+      {
+        "accountType": "funded",
+        "externalId": "25483420",
+        "password": "U2FsdGVkX1/PUNJ5w3RHOJmO/m6BFi5gbnd92oGXxpk=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25483420"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25488972",
+        "password": "U2FsdGVkX18cECwPqzZvMtzz6g8QIeSblT+1phcrtJ4=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25488972"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25489738",
+        "password": "U2FsdGVkX1+TjAjQGYWiz5MBaqBl4ml+FmFnBsLM07E=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25489738"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25503000",
+        "password": "U2FsdGVkX19U4q/TYCZ5PrL1HrOoGbMNFU9amV6IOAU=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25503000"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25516232",
+        "password": "U2FsdGVkX1+i95RvKHmAqI8FHmIU6i0kdTJKyw1jLSU=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25516232"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25524708",
+        "password": "U2FsdGVkX18suB5jfaaQ/vjVna/LT19CRtZphyIoOOY=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25524708"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25533308",
+        "password": "U2FsdGVkX1+xr5aJxTx5qC6MgPfElXRB5sFEb0Upf0w=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25533308"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25541258",
+        "password": "U2FsdGVkX18NNdm8ShAqa0IjNg+ZL/p2AyAXLqQuN9w=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25541258"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "5000725",
+        "password": "U2FsdGVkX19SM8akYmJcvyNs15jZ0YhA1y/ocf7cfYU=",
+        "tradingSystem": "c-trader",
+        "login": "5000725"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "5000938",
+        "password": "U2FsdGVkX18Q0J7pyJ/MR1Y4kk4fkEo7TzHNSyPGGzg=",
+        "tradingSystem": "c-trader",
+        "login": "5000938"
+      },
+      {
+        "accountType": "funded",
+        "externalId": "5001218",
+        "password": "U2FsdGVkX180ZbORu9GG+xDbwwCZ1meekR6H/N2C8rk=",
+        "tradingSystem": "c-trader",
+        "login": "5001218"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "5001422",
+        "password": "U2FsdGVkX19acBSpkwa1jEnM92det0ryqh+h0lEKmic=",
+        "tradingSystem": "c-trader",
+        "login": "5001422"
+      },
+      {
+        "accountType": "funded",
+        "externalId": "5002599",
+        "password": "U2FsdGVkX1/g1lJIHEpIvDAGs6tskHaC3vfk2SudzRM=",
+        "tradingSystem": "c-trader",
+        "login": "5002599"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25623710",
+        "password": "U2FsdGVkX1/AigNHikdoX4E2N9WUGDjo0jAN6T/jH1Y=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25623710"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25625628",
+        "password": "U2FsdGVkX1+HQ1IiVInz+EEXYkuM0y4eQABlAvYuw/8=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25625628"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25629000",
+        "password": "U2FsdGVkX18nCD86PwLz8YNrODZGnP4myZ1T7EJryOs=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25629000"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25633694",
+        "password": "U2FsdGVkX18Cx1sQ5i5jmYjIQnzWXEICfLnua/DQkXI=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25633694"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25643471",
+        "password": "U2FsdGVkX18qwzwkXmJlH2R+XEPnWrp7KwoOQBd3UPo=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25643471"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25651471",
+        "password": "U2FsdGVkX1/OSeGkTkIlhKkmAzJqzpCXQxGNXOWkjY0=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25651471"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "5004248",
+        "password": "U2FsdGVkX18pYzTdhzxMGW9AAQVsBx4aw+LLJfHT0Uo=",
+        "tradingSystem": "c-trader",
+        "login": "5004248"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25680008",
+        "password": "U2FsdGVkX1+ZMic8FuFNTvFdRTtJwORzI7MUYqSSI9I=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25680008"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25701232",
+        "password": "U2FsdGVkX1+7QJlfOFzpPPesWxFujU2mpFiF94eZX38=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25701232"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25707612",
+        "password": "U2FsdGVkX1/uqL4Su6JxLAFfYC/Z+8yUyj/ULulRXyE=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25707612"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25721903",
+        "password": "U2FsdGVkX18USgMPmduc1DVQ8yOLebUu/xhgPFfKhpw=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25721903"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25725414",
+        "password": "U2FsdGVkX192YUTGa80hT3+RoMmyQ3KB2TVVCq63wq8=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25725414"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25739374",
+        "password": "U2FsdGVkX1/gzFpKVABL7q8qxDqrKI7JvaDSP4bWEkc=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25739374"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25759951",
+        "password": "U2FsdGVkX1+fKc0fwImL9YfKBolX9Arjlge5MGlfbU0=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25759951"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25764834",
+        "password": "U2FsdGVkX18sT4mAwM5XpaW1ai+FzjTWnPq7r3C7ZE8=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25764834"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25788023",
+        "password": "U2FsdGVkX1+xTadtqIRPmd9hKhk3HoYhekpzlvF3p/o=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25788023"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25800962",
+        "password": "U2FsdGVkX18UPl2Wb6xrnfVFMcCItY+CoksBPg7ewCY=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25800962"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25807017",
+        "password": "U2FsdGVkX18TdMnCwIf3Gh3KOu4govPRxOXgtMDZZ2A=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25807017"
+      },
+      {
+        "accountType": "funded",
+        "externalId": "25817082",
+        "password": "U2FsdGVkX19spB3XXNy8gEOPpNLVfu3bYbGE66hG6ks=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25817082"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25824318",
+        "password": "U2FsdGVkX1+IRtCG3+Spl8XUoX+IduFYcB3vS/6Q5hQ=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25824318"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25910385",
+        "password": "U2FsdGVkX18o8U7tHWQoZNZ5/5weilb/Mt8lE8TYm3k=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25910385"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25937621",
+        "password": "U2FsdGVkX19gVMCj3aKuHxBTNr7rpCilfKbIAC4hVsQ=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25937621"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "25957660",
+        "password": "U2FsdGVkX19HfhVOwz6/Mz5Xcb5Bbyvp1etZgHfgRsU=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25957660"
+      },
+      {
+        "accountType": "funded",
+        "externalId": "25983486",
+        "password": "U2FsdGVkX18X8+xihywvqtWs1tHl2RI7pgOY5SftZgQ=",
+        "tradingSystem": "meta-trader-5",
+        "login": "25983486"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "26002789",
+        "password": "U2FsdGVkX1+oLa1oZmu1TewBcxKaCVm/dYUfk5ETUyc=",
+        "tradingSystem": "meta-trader-5",
+        "login": "26002789"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "26053525",
+        "password": "U2FsdGVkX1+cUwKJoHNn/2aXWWuB297F9Ai8PPlqqLc=",
+        "tradingSystem": "meta-trader-5",
+        "login": "26053525"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "26137476",
+        "password": "U2FsdGVkX19+Ld+yNoc5B5GlYPohx1EFPjzlhrdc86Q=",
+        "tradingSystem": "meta-trader-5",
+        "login": "26137476"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "26147948",
+        "password": "U2FsdGVkX183TP4+orOzs/m7aSUOFkqE3XRiRAcb+Go=",
+        "tradingSystem": "meta-trader-5",
+        "login": "26147948"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "26177591",
+        "password": "U2FsdGVkX19DVwZwvnZAOQquZ+qgQUQW6FUH8t2PXkA=",
+        "tradingSystem": "meta-trader-5",
+        "login": "26177591"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "26207179",
+        "password": "U2FsdGVkX1++1jLfBp7sso8Q070ag6cK6XUEWr4P37o=",
+        "tradingSystem": "meta-trader-5",
+        "login": "26207179"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "26230253",
+        "password": "U2FsdGVkX19jAdhyuVPFDYnNFIuHSOyVSqT/XChOT8A=",
+        "tradingSystem": "meta-trader-5",
+        "login": "26230253"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "26248688",
+        "password": "U2FsdGVkX19y1BxOyu5S9s26OssYsF+70xvEyR85RII=",
+        "tradingSystem": "meta-trader-5",
+        "login": "26248688"
+      },
+      {
+        "accountType": "funded",
+        "externalId": "26270527",
+        "password": "U2FsdGVkX1+zBEXTabQZEUFyvy35IpwKCiZSeFZOdE4=",
+        "tradingSystem": "meta-trader-5",
+        "login": "26270527"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "26296157",
+        "password": "U2FsdGVkX18abBN7jL6ymFy5iiQbwVw0wgax02DZVTg=",
+        "tradingSystem": "meta-trader-5",
+        "login": "26296157"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "26310568",
+        "password": "U2FsdGVkX1/5iFaAYf2Ffj4w8yij/HNEsLM6SwanGIo=",
+        "tradingSystem": "meta-trader-5",
+        "login": "26310568"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "26411709",
+        "password": "U2FsdGVkX1/RdeO1a3UPP8/F9u7/pIXkBS1KZIG99ao=",
+        "tradingSystem": "meta-trader-5",
+        "login": "26411709"
+      },
+      {
+        "accountType": "evaluation",
+        "externalId": "26448846",
+        "password": "U2FsdGVkX18Fbh5H0ejsFCvStvhf52TxQIwvNI7fRhU=",
+        "tradingSystem": "meta-trader-5",
+        "login": "26448846"
+      }
+    ],
+    "creditBalance": 0,
+    "verificationData": {
+      "status": "approved",
+      "updatedAt": "2024-07-08T06:09:48.553Z",
+      "approvedAt": "2024-07-08T06:09:48.553Z"
+    },
+    "createdAt": "2024-07-08T08:37:47.944Z",
+    "updatedAt": "2026-06-23T07:29:47.107Z",
+    "address": "Truong Dinh",
+    "city": "Hanoi",
+    "phoneNumber": "0911729222",
+    "zipCode": "250000",
+    "profileUrl": "http://res.cloudinary.com/dvt6xbblx/image/upload/v1721140244/5ers-prod/profile-images/profile_c7e984df-d505-4af2-95cf-148d0bc64880.png",
+    "publicId": "bkGH-p0EI4CEeUexbHgGv",
+    "paymentData": {
+      "rise": {
+        "riseId": "0x6593EF3C53b891E5B4298b577CB139Ba305eE7d0"
+      }
+    },
+    "channels": [],
+    "approvals": {
+      "public-profile": "2025-02-04T05:30:42.740Z"
+    },
+    "profile": {
+      "private": false
+    },
+    "birthDate": "Thu Dec 24 1992 17:00:00 GMT+0000 (Coordinated Universal Time)",
+    "userName": "TaoTau.FX",
+    "language": "en",
+    "applicationLanguage": "en",
+    "assetPreference": {
+      "selectedAsset": [
+        "forex",
+        "futures"
+      ],
+      "completedAt": "2026-02-19T12:50:42.529Z"
+    },
+    "referredByAffiliateId": "9985633"
+  }
+}

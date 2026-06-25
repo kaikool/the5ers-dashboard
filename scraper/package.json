@@ -3,9 +3,11 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@supabase/supabase-js": "^2.108.2",
+    "dotenv": "^17.4.2",
     "playwright": "^1.52.0",
+    "puppeteer": "^24.0.0",
     "puppeteer-extra": "^3.3.6",
-    "puppeteer-extra-plugin-stealth": "^2.11.2",
-    "puppeteer": "^24.0.0"
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
   }
 }
