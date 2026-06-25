@@ -245,7 +245,7 @@ async function run() {
       // Đợi 1 giây để tránh bị Cloudfront/WAF chặn do gửi request quá nhanh
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
-
+    }
     // Save profile data
     fs.writeFileSync(path.join(DATA_DIR, 'profile.json'), JSON.stringify(profileData, null, 2));
     
