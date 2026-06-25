@@ -15,11 +15,10 @@ jobs:
         with:
           node-version: 20
       
-      - name: Install Puppeteer
+      - name: Install dependencies
         run: |
           cd scraper
-          npm ci
-          npx puppeteer browsers install chrome
+          npm install --no-audit --no-fund 2>&1
       
       - name: Scrape The5ers
         env:
