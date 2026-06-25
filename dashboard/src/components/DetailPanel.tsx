@@ -35,13 +35,15 @@ export default function DetailPanel({ account, detail, onClose, formatCurrency }
   return (
     <div className="detail-panel">
       <div className="detail-header">
+        <button className="btn-close" onClick={onClose} style={{ border: 'none', background: 'transparent', padding: 0, marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span>←</span> Back to Accounts
+        </button>
         <div>
           <h2 className="text-hero" style={{ fontSize: 24 }}>{account.name}</h2>
           <div style={{ marginTop: 4, fontFamily: 'monospace', color: 'var(--text-muted)', fontSize: 12 }}>
             {account.accountId} // {account.type.toUpperCase()} // {account.status.toUpperCase()}
           </div>
         </div>
-        <button className="btn-close" onClick={onClose}>Close</button>
       </div>
 
       <div className={`risk-alert ${risk.dailyStatus}`}>
@@ -96,32 +98,28 @@ export default function DetailPanel({ account, detail, onClose, formatCurrency }
       )}
 
       {detail?.rules && detail.rules.length > 0 && (
-        <div className="data-table-container">
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>RULE</th>
-                <th>CURRENT</th>
-                <th>LIMIT</th>
-                <th>STATUS</th>
-              </tr>
-            </thead>
-            <tbody>
-              {detail.rules.map((rule, i) => (
-                <tr key={i}>
-                  <td>{rule.ruleName}</td>
-                  <td style={{ fontFamily: 'monospace' }}>{rule.currentValue}</td>
-                  <td style={{ fontFamily: 'monospace' }}>{rule.limit}</td>
-                  <td>
-                    <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                      <span className={`status-dot ${rule.status === 'ok' ? 'safe' : rule.status === 'warning' ? 'warning' : 'danger'}`} />
-                      <span style={{ textTransform: 'uppercase', fontSize: 11 }}>{rule.status}</span>
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div style={{ marginTop: 48 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
+            <span className="status-dot safe" style={{ background: 'var(--text-muted)', color: 'var(--text-muted)' }} />
+            <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-base)', letterSpacing: '0.05em' }}>TRADING RULES</span>
+          </div>
+          <div className="mobile-list">
+            {detail.rules.map((rule, i) => (
+              <div key={i} className="mobile-list-item">
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
+                  <div style={{ fontWeight: 600, color: 'var(--text-base)' }}>{rule.ruleName}</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <span className={`status-dot ${rule.status === 'ok' ? 'safe' : rule.status === 'warning' ? 'warning' : 'danger'}`} />
+                    <span style={{ textTransform: 'uppercase', fontSize: 11 }}>{rule.status}</span>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'monospace', fontSize: 13 }}>
+                  <div style={{ color: 'var(--text-dim)' }}>Current: <span style={{ color: 'var(--text-base)' }}>{rule.currentValue}</span></div>
+                  <div style={{ color: 'var(--text-dim)' }}>Limit: <span style={{ color: 'var(--text-base)' }}>{rule.limit}</span></div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 

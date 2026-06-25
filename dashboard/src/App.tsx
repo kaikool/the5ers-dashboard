@@ -135,43 +135,44 @@ function App() {
   return (
     <div className="app">
       {/* Header */}
-      <div className="header">
-        <div>
-          <h1 className="text-hero">Control Center</h1>
-          <div className="header-meta">
-            {profile.userName && <span>{profile.userName}</span>}
-            <span>•</span>
-            <span>{accounts.length} Accounts</span>
+      {!selectedAccount && (
+        <div className="header">
+          <div>
+            <h1 className="text-hero">Control Center</h1>
+            <div className="header-meta">
+              {profile.userName && <span>{profile.userName}</span>}
+              <span>•</span>
+              <span>{accounts.length} Accounts</span>
+            </div>
+          </div>
+          <div className="header-actions">
+            {profile.scrapedAt && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: 'var(--text-muted)' }}>
+                <span className={`status-dot ${getAgeStatus(profile.scrapedAt).type}`} />
+                {getAgeStatus(profile.scrapedAt).text}
+              </div>
+            )}
           </div>
         </div>
-        <div className="header-actions">
-          {profile.scrapedAt && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: 'var(--text-muted)' }}>
-              <span className={`status-dot ${getAgeStatus(profile.scrapedAt).type}`} />
-              {getAgeStatus(profile.scrapedAt).text}
-            </div>
-          )}
-        </div>
-      </div>
+      )}
 
       {/* Error */}
       {error && <div className="error-state">{error}</div>}
 
-      {/* Account Cards */}
-      <div className="account-grid">
-        {accounts.map((account) => (
-          <AccountCard
-            key={account.accountId}
-            account={account}
-            selected={selectedAccount?.accountId === account.accountId}
-            onClick={() => handleSelectAccount(account)}
-            formatCurrency={formatCurrency}
-          />
-        ))}
-      </div>
-
-      {/* Detail Panel */}
-      {selectedAccount && (
+      {/* Main View: Either Account List OR Detail Panel */}
+      {!selectedAccount ? (
+        <div className="account-grid">
+          {accounts.map((account) => (
+            <AccountCard
+              key={account.accountId}
+              account={account}
+              selected={false}
+              onClick={() => handleSelectAccount(account)}
+              formatCurrency={formatCurrency}
+            />
+          ))}
+        </div>
+      ) : (
         <DetailPanel
           account={selectedAccount}
           detail={detailData}

@@ -95,7 +95,7 @@ async function puppeteerLogin(cookies) {
     localStorage.setItem('dls_last_user_login_id', 'phuk.td@gmail.com');
     localStorage.setItem('dls_last_user_display_name', 'Đình Phúc Trần');
   }, cookies);
-  await page.goto(`${HUB}/en/dashboard`, { waitUntil: 'networkidle', timeout: 30000 });
+  await page.goto(`${HUB}/en/dashboard`, { waitUntil: 'networkidle0', timeout: 30000 });
   await new Promise(r => setTimeout(r, 5000));
   const avatar = await page.evaluate(() => !!document.querySelector('[class*="avatar"]'));
   if (avatar) {
