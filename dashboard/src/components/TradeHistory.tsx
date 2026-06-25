@@ -9,33 +9,40 @@ export default function TradeHistory({ trades, formatCurrency }: Props) {
   if (!trades || trades.length === 0) return null;
 
   return (
-    <div style={{ marginTop: 48, padding: '0 24px', paddingBottom: 48 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
-        <span className="status-dot safe" style={{ background: 'var(--text-dim)' }} />
-        <span className="text-label">LỊCH SỬ GIAO DỊCH</span>
+    <div className="trade-list-section">
+      <div className="section-label">
+        <span className="material-symbols-rounded" style={{ fontSize: 18 }}>swap_vert</span>
+        Lịch sử giao dịch ({trades.length})
       </div>
-      <div className="mobile-list">
+
+      <div className="trade-list">
         {trades.map((trade) => {
           const isWin = trade.pnl > 0;
+          const dirClass = trade.direction === 'buy' ? 'buy' : 'sell';
+          const dirIcon = trade.direction === 'buy' ? 'trending_up' : 'trending_down';
+          const dirLabel = trade.direction === 'buy' ? 'Mua' : 'Bán';
+
           return (
-            <div key={trade.tradeId} className="mobile-list-item" style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ fontWeight: 700, fontSize: '15px' }}>{trade.instrument}</span>
-                  <span style={{ fontSize: '10px', padding: '2px 6px', borderRadius: '4px', background: trade.direction === 'buy' ? 'rgba(0, 255, 255, 0.1)' : 'rgba(255, 51, 102, 0.1)', color: trade.direction === 'buy' ? 'var(--accent-cyan)' : 'var(--danger-neon)', fontWeight: 600 }}>
-                    {trade.direction === 'buy' ? 'MUA' : 'BÁN'}
-                  </span>
+            <div key={trade.tradeId} className="trade-item">
+              <div className="trade-leading">
+                <div className={`trade-icon ${dirClass}`}>
+                  <span className="material-symbols-rounded">{dirIcon}</span>
                 </div>
-                <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
-                  {new Date(trade.openTime).toLocaleDateString()} {new Date(trade.openTime).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} <span style={{ opacity: 0.5 }}>•</span> ⏱ {trade.duration}
+                <div className="trade-info">
+                  <div className="trade-headline">
+                    {trade.instrument} <span style={{ font: 'var(--md-label-small)', opacity: 0.7 }}>• {dirLabel}</span>
+                  </div>
+                  <div className="trade-supporting">
+                    {new Date(trade.openTime).toLocaleDateString('vi-VN')} {new Date(trade.openTime).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })} • {trade.duration}
+                  </div>
                 </div>
               </div>
 
-              <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <div style={{ fontWeight: 700, fontSize: '15px', color: isWin ? 'var(--success-neon)' : 'var(--danger-neon)' }}>
+              <div className="trade-trailing">
+                <div className={`trade-pnl ${isWin ? 'text-profit' : 'text-loss'}`}>
                   {formatCurrency(trade.pnl)}
                 </div>
-                <div style={{ fontFamily: 'monospace', fontSize: '11px', color: 'var(--text-dim)' }}>
+                <div className="trade-prices">
                   {trade.openPrice} → {trade.closePrice}
                 </div>
               </div>

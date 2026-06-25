@@ -3,63 +3,69 @@ import { calculateRiskBuffer } from '../utils/risk';
 
 interface Props {
   account: AccountOverview;
-  selected: boolean;
   onClick: () => void;
   formatCurrency: (value: number) => string;
 }
 
-export default function AccountCard({ account, selected, onClick, formatCurrency }: Props) {
+export default function AccountCard({ account, onClick, formatCurrency }: Props) {
   const risk = calculateRiskBuffer(account, null);
-  
+
   const getRiskMessage = () => {
-    if (risk.dailyStatus === 'danger') return 'DỪNG TRADE: Đã Chạm Mức Lỗ Ngày';
-    if (risk.overallStatus === 'danger') return 'NGUY HIỂM: Đã Chạm Mức Sụt Giảm Tối Đa';
-    if (risk.dailyStatus === 'warning') return 'CẢNH BÁO: Giảm Thiểu Rủi Ro Lại';
-    return 'AN TOÀN: Có Thể Giao Dịch Bình Thường';
+    if (risk.dailyStatus === 'danger') return { text: 'Chạm mức lỗ ngày', icon: 'dangerous' };
+    if (risk.overallStatus === 'danger') return { text: 'Rủi ro tối đa', icon: 'warning' };
+    if (risk.dailyStatus === 'warning') return { text: 'Cảnh báo rủi ro', icon: 'shield' };
+    return { text: 'An toàn', icon: 'verified_user' };
   };
 
+  const riskInfo = getRiskMessage();
+  const chipClass = account.type === 'funded' ? 'funded' : account.type === 'evaluation' ? 'evaluation' : '';
+
   return (
-    <div className={`neo-card ${selected ? 'selected' : ''}`} onClick={onClick}>
-      <div className="card-top">
-        <div>
-          <div className="card-title">{account.name}</div>
-        </div>
-        <span className="tag">{account.type === 'demo' ? 'DEMO' : account.type.toUpperCase()}</span>
+    <div className="md3-card" onClick={onClick}>
+      {/* Header */}
+      <div className="card-header">
+        <span className="card-name">{account.name}</span>
+        <span className={`md3-chip ${chipClass}`}>
+          {account.type === 'demo' ? 'Demo' : account.type === 'funded' ? 'Funded' : 'Eval'}
+        </span>
       </div>
 
+      {/* Risk Banner */}
       <div className={`risk-banner ${risk.dailyStatus}`}>
-        <span className={`status-dot ${risk.dailyStatus}`} />
-        {getRiskMessage()}
+        <span className="material-symbols-rounded">{riskInfo.icon}</span>
+        {riskInfo.text}
       </div>
 
-      <div style={{ marginBottom: 32 }}>
-        <div className="text-label" style={{ marginBottom: 4 }}>Biên Độ Ngày Còn Lại</div>
-        <div className="text-number-huge" style={{ color: risk.dailyStatus === 'safe' ? 'var(--success-neon)' : `var(--${risk.dailyStatus}-neon)` }}>
+      {/* Daily Buffer Highlight */}
+      <div className="card-highlight">
+        <div className="highlight-label">Biên độ ngày còn lại</div>
+        <div
+          className="highlight-value"
+          style={{ color: risk.dailyStatus === 'safe' ? 'var(--color-profit)' : risk.dailyStatus === 'warning' ? 'var(--color-warn)' : 'var(--color-loss)' }}
+        >
           {formatCurrency(risk.dailyBuffer)}
         </div>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 24 }}>
-        <div>
-          <div className="text-label">Mục Tiêu Còn Lại</div>
-          <div style={{ fontSize: 20, fontWeight: 700 }}>{formatCurrency(risk.targetRemaining)}</div>
+      {/* Metrics */}
+      <div style={{ marginTop: 16 }}>
+        <div className="card-metric-row">
+          <span className="metric-label">Số dư</span>
+          <span className="metric-value">{formatCurrency(account.balance)}</span>
         </div>
-        <div style={{ textAlign: 'right' }}>
-          <div className="text-label">Lợi Nhuận (P&amp;L)</div>
-          <div className={account.pnl > 0 ? 'value-green' : account.pnl < 0 ? 'value-red' : ''} style={{ fontSize: 20, fontWeight: 700 }}>
+        <div className="card-metric-row">
+          <span className="metric-label">P&L</span>
+          <span className="metric-value" style={{ color: account.pnl > 0 ? 'var(--color-profit)' : account.pnl < 0 ? 'var(--color-loss)' : undefined }}>
             {formatCurrency(account.pnl)}
-          </div>
+          </span>
         </div>
-      </div>
-
-      <div style={{ padding: '16px', background: 'var(--bg-subtle)', borderRadius: '12px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13 }}>
-          <span className="text-muted">Số Dư (Balance)</span>
-          <span style={{ fontWeight: 700 }}>{formatCurrency(account.balance)}</span>
+        <div className="card-metric-row">
+          <span className="metric-label">Mục tiêu còn lại</span>
+          <span className="metric-value">{formatCurrency(risk.targetRemaining)}</span>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 13, marginTop: 8 }}>
-          <span className="text-muted">Biên Độ Rủi Ro Tổng Thể</span>
-          <span style={{ fontWeight: 700, color: risk.overallStatus === 'safe' ? 'var(--success-neon)' : `var(--${risk.overallStatus}-neon)` }}>
+        <div className="card-metric-row">
+          <span className="metric-label">Biên độ tổng thể</span>
+          <span className="metric-value" style={{ color: risk.overallStatus === 'safe' ? 'var(--color-profit)' : risk.overallStatus === 'warning' ? 'var(--color-warn)' : 'var(--color-loss)' }}>
             {formatCurrency(risk.overallBuffer)}
           </span>
         </div>
