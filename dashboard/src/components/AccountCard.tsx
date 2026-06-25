@@ -9,60 +9,49 @@ interface Props {
 }
 
 export default function AccountCard({ account, selected, onClick, formatCurrency }: Props) {
-  const statusClass = `status-pill status-${account.status}`;
-  const typeClass = `account-type-tag type-${account.type}`;
-  const pnlClass = account.pnl > 0 ? 'positive' : account.pnl < 0 ? 'negative' : 'zero';
-
-  const risk = calculateRiskBuffer(account, null); // Using overview data
+  const risk = calculateRiskBuffer(account, null);
+  
+  const pnlClass = account.pnl > 0 ? 'value-green' : account.pnl < 0 ? 'value-red' : '';
+  const progressPercent = Math.min(100, Math.max(0, ((account.balance * 0.1 - risk.targetRemaining) / (account.balance * 0.1)) * 100));
 
   return (
-    <div
-      className={`account-card ${selected ? 'selected' : ''}`}
-      onClick={onClick}
-    >
-      <div className="account-card-header">
+    <div className={`neo-card ${selected ? 'selected' : ''}`} onClick={onClick}>
+      <div className="card-top">
         <div>
-          <div className="account-name">{account.name}</div>
-          <div className="account-id">{account.accountId}</div>
+          <div className="card-title">{account.name}</div>
+          <div className="card-id">{account.accountId}</div>
         </div>
         <div>
-          <span className={typeClass}>{account.type}</span>
+          <span className="tag">{account.type}</span>
         </div>
       </div>
 
-      <div className="account-metrics">
-        <div className="metric-item">
-          <div className="metric-label">Balance</div>
-          <div className="metric-value">{formatCurrency(account.balance)}</div>
+      <div style={{ marginBottom: 32 }}>
+        <div className="text-label" style={{ marginBottom: 4 }}>Balance</div>
+        <div className="text-number-huge">{formatCurrency(account.balance)}</div>
+      </div>
+
+      <div className="metrics-row">
+        <div>
+          <div className="text-label">P&amp;L</div>
+          <div className={`card-title ${pnlClass}`} style={{ fontSize: 18 }}>{formatCurrency(account.pnl)}</div>
         </div>
-        <div className="metric-item">
-          <div className="metric-label">P&amp;L</div>
-          <div className={`metric-value ${pnlClass}`}>{formatCurrency(account.pnl)}</div>
-        </div>
-        <div className="metric-item">
-          <div className="metric-label">Daily Buffer</div>
-          <div className="metric-value" style={{ color: `var(--${risk.dailyStatus === 'safe' ? 'success' : risk.dailyStatus})` }}>
+        <div style={{ textAlign: 'right' }}>
+          <div className="text-label">Daily Buffer</div>
+          <div className="card-title" style={{ fontSize: 18, color: risk.dailyStatus === 'safe' ? 'var(--success-neon)' : `var(--${risk.dailyStatus}-neon)` }}>
             {formatCurrency(risk.dailyBuffer)}
           </div>
         </div>
       </div>
 
-      <div style={{ marginTop: 24 }}>
-        <div className="buffer-row" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: 12 }}>
-          <span style={{ color: 'var(--text-secondary)' }}>Overall Buffer: <strong style={{ color: `var(--${risk.overallStatus === 'safe' ? 'success' : risk.overallStatus})` }}>{formatCurrency(risk.overallBuffer)}</strong></span>
-          <span style={{ color: 'var(--text-secondary)' }}>Target: <strong>{formatCurrency(risk.targetRemaining)} left</strong></span>
+      <div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 11, color: 'var(--text-muted)' }}>
+          <span>Overall Buffer: <strong style={{ color: 'var(--text-base)' }}>{formatCurrency(risk.overallBuffer)}</strong></span>
+          <span>Target: <strong style={{ color: 'var(--text-base)' }}>{formatCurrency(risk.targetRemaining)}</strong></span>
         </div>
-        <div style={{ height: 6, background: 'rgba(255,255,255,0.1)', borderRadius: 3, overflow: 'hidden', display: 'flex' }}>
-          <div style={{ width: '50%', background: `var(--${risk.overallStatus === 'safe' ? 'success' : risk.overallStatus})` }}></div>
-          <div style={{ width: '50%', background: 'transparent' }}></div>
+        <div className="line-progress">
+          <div className="line-fill" style={{ width: `${progressPercent || 50}%`, background: risk.overallStatus === 'safe' ? 'var(--accent-cyan)' : `var(--${risk.overallStatus}-neon)` }} />
         </div>
-      </div>
-
-      <div style={{ marginTop: 20, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span className={statusClass}>{account.status}</span>
-        <span style={{ fontSize: 12, color: 'var(--text-muted)', fontWeight: 600 }}>
-          {account.currency}
-        </span>
       </div>
     </div>
   );

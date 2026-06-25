@@ -17,24 +17,28 @@ export default function DrawdownChart({ data }: Props) {
   if (!data || data.length === 0) return null;
 
   return (
-    <div className="rules-section" style={{ marginTop: 24, padding: '24px 0 0 0' }}>
-      <h3 className="chart-title">📉 Equity &amp; Drawdown Curve</h3>
+    <div style={{ marginTop: 48 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
+        <span className="status-dot safe" style={{ background: 'var(--accent-cyan)', color: 'var(--accent-cyan)' }} />
+        <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-base)', letterSpacing: '0.05em' }}>EQUITY CURVE</span>
+      </div>
       <div className="chart-container">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.05)" />
-            <XAxis dataKey="day" stroke="var(--text-muted)" fontSize={12} tickMargin={10} />
-            <YAxis stroke="var(--text-muted)" fontSize={12} domain={['dataMin - 1000', 'dataMax + 1000']} />
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--border-dim)" vertical={false} />
+            <XAxis dataKey="day" stroke="var(--text-dim)" fontSize={11} tickMargin={12} tickLine={false} axisLine={false} />
+            <YAxis stroke="var(--text-dim)" fontSize={11} domain={['dataMin - 1000', 'dataMax + 1000']} tickLine={false} axisLine={false} />
             <Tooltip
-              contentStyle={{ background: 'var(--bg-card)', border: '1px solid var(--border-light)', borderRadius: 8 }}
-              itemStyle={{ color: 'var(--text-primary)', fontSize: 13 }}
+              contentStyle={{ background: 'var(--bg-card)', border: '1px solid var(--border-dim)', borderRadius: 8 }}
+              itemStyle={{ color: '#fff', fontSize: 13 }}
+              labelStyle={{ color: 'var(--text-muted)' }}
             />
             
-            <ReferenceLine y={data[0].dailyLimit} stroke="var(--danger)" strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: 'Daily Loss Limit', fill: 'var(--danger)', fontSize: 11 }} />
-            <ReferenceLine y={data[0].overallLimit} stroke="var(--danger)" strokeDasharray="3 3" label={{ position: 'insideBottomLeft', value: 'Overall Limit', fill: 'var(--danger)', fontSize: 11 }} />
+            <ReferenceLine y={data[0].dailyLimit} stroke="var(--danger-neon)" strokeDasharray="3 3" label={{ position: 'insideTopLeft', value: 'DAILY LIMIT', fill: 'var(--danger-neon)', fontSize: 10, fontWeight: 700, letterSpacing: '0.05em' }} />
+            <ReferenceLine y={data[0].overallLimit} stroke="var(--danger-neon)" strokeDasharray="3 3" label={{ position: 'insideBottomLeft', value: 'OVERALL LIMIT', fill: 'var(--danger-neon)', fontSize: 10, fontWeight: 700, letterSpacing: '0.05em' }} />
 
-            <Line type="monotone" dataKey="balance" stroke="var(--info)" strokeWidth={2} dot={false} />
-            <Line type="monotone" dataKey="equity" stroke="var(--accent)" strokeWidth={2} dot={false} />
+            <Line type="monotone" dataKey="balance" stroke="var(--text-muted)" strokeWidth={1} dot={false} />
+            <Line type="monotone" dataKey="equity" stroke="var(--accent-cyan)" strokeWidth={2} dot={false} style={{ filter: 'drop-shadow(0px 0px 8px var(--accent-cyan-dim))' }} />
           </LineChart>
         </ResponsiveContainer>
       </div>

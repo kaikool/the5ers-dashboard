@@ -127,8 +127,8 @@ function App() {
   const getAgeStatus = (scrapedAt: string) => {
     const ageMs = Date.now() - new Date(scrapedAt).getTime();
     const ageMins = Math.floor(ageMs / 60000);
-    if (ageMins < 60) return { text: `Tươi (${ageMins}m)`, type: 'success' };
-    if (ageMins < 120) return { text: `Warning (${Math.floor(ageMins/60)}h)`, type: 'warning' };
+    if (ageMins < 60) return { text: `Updated ${ageMins}m ago`, type: 'safe' };
+    if (ageMins < 120) return { text: `Updated ${Math.floor(ageMins/60)}h ago`, type: 'warning' };
     return { text: `Stale (${Math.floor(ageMins/60)}h)`, type: 'danger' };
   };
 
@@ -137,23 +137,20 @@ function App() {
       {/* Header */}
       <div className="header">
         <div>
-          <h1>Premium Dashboard</h1>
+          <h1 className="text-hero">Control Center</h1>
           <div className="header-meta">
-            {profile.userName && <span>{profile.userName} · </span>}
-            {profile.scrapedAt && (
-              <span>Cập nhật: {new Date(profile.scrapedAt).toLocaleString('vi-VN')}</span>
-            )}
+            {profile.userName && <span>{profile.userName}</span>}
+            <span>•</span>
+            <span>{accounts.length} Accounts</span>
           </div>
         </div>
         <div className="header-actions">
           {profile.scrapedAt && (
-            <div className={`status-badge loaded`} style={{ color: `var(--${getAgeStatus(profile.scrapedAt).type})`, borderColor: `var(--${getAgeStatus(profile.scrapedAt).type})` }}>
-              Data: {getAgeStatus(profile.scrapedAt).text}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: 'var(--text-muted)' }}>
+              <span className={`status-dot ${getAgeStatus(profile.scrapedAt).type}`} />
+              {getAgeStatus(profile.scrapedAt).text}
             </div>
           )}
-          <div className="status-badge loaded">
-            {accounts.length} tài khoản
-          </div>
         </div>
       </div>
 

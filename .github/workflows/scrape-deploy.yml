@@ -1,9 +1,9 @@
-name: Scrape + Deploy The5ers Dashboard
+name: Scrape The5ers Dashboard
 
 on:
   schedule:
     - cron: '0 1 * * *'   # 8h VN mỗi ngày
-  workflow_dispatch:       # chạy tay
+  workflow_dispatch:
 
 jobs:
   scrape:
@@ -29,17 +29,16 @@ jobs:
           cd scraper
           node scraper.mjs
       
-      - name: Copy data & build dashboard
+      - name: Copy data & build
         run: |
           mkdir -p dashboard/public/data
           cp scraper/data/profile.json dashboard/public/data/ 2>/dev/null || true
           cd dashboard && npm ci && npm run build
       
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: '--prod'
-          working-directory: ./dashboard
+      - name: Commit & push data
+        run: |
+          git config user.name "the5ers-bot"
+          git config user.email "bot@the5ers-dashboard"
+          git add dashboard/public/data/
+          git diff --quiet && git diff --staged --quiet || \
+            (git commit -m "auto: update data $(date +%Y-%m-%d) [skip ci]" && git push)
