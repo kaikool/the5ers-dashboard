@@ -1,19 +1,8 @@
 // ─── Data Types ───────────────────────────────────────────────────────────────
 
-export type AccountType =
-  | 'evaluation'
-  | 'funded'
-  | 'demo'
-  | 'contest'
-  | 'competition';
+export type AccountType = string;
 
-export type AccountStatus =
-  | 'active'
-  | 'inactive'
-  | 'paused'
-  | 'breached'
-  | 'completed'
-  | 'graduated';
+export type AccountStatus = string;
 
 export interface AccountOverview {
   accountId: string;
@@ -23,8 +12,9 @@ export interface AccountOverview {
   balance: number;
   equity: number;
   pnl: number;
-  pnlPercent: number;
-  currency: string;
+  pnlPercent?: number;
+  currency?: string;
+  _rawStats?: any;
 }
 
 export interface Purchase {
@@ -39,7 +29,7 @@ export interface Purchase {
 
 export interface Profile {
   userName: string;
-  email: string;
+  email?: string;
   scrapedAt: string;
   accounts: AccountOverview[];
   purchases?: Purchase[];
@@ -97,6 +87,7 @@ export interface AccountDetail {
   createdAt: string;
   expiresAt?: string;
   lastActivityAt?: string;
+  trades?: Trade[];
 }
 
 export interface Trade {
