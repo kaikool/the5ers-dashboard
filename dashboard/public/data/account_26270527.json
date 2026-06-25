@@ -1,11 +1,41 @@
 {
+  "_id": "69e2a2f55835462f185a3f77",
+  "userId": "c7e984df-d505-4af2-95cf-148d0bc64880",
+  "purchaseId": "1000135375",
+  "programId": "695532847172b448af1474df",
+  "tradingSystem": "meta-trader-5",
+  "status": "disabled",
+  "type": "funded",
+  "state": {
+    "terminated": true,
+    "dailyPause": false,
+    "dailyLoss": false,
+    "target": false,
+    "expired": false
+  },
+  "boosters": [],
+  "creationRetries": 0,
+  "highStakesWithdrawalCount": 0,
+  "config": {
+    "hasSeen": false
+  },
+  "metadata": {
+    "correlationHash": "678afd43dc5f2bc6a7ce4637f548b954f6abc7b703cd8d80b82a4f641f46772a",
+    "initialFunds": 161,
+    "initialProfitCredits": 0,
+    "initialRefundCredits": 161
+  },
+  "assetClass": "forex",
+  "createdAt": "2026-04-17T21:15:33.778Z",
+  "updatedAt": "2026-04-22T01:40:31.734Z",
+  "tsAccount": "26270527",
+  "tsAccountId": "26270527",
+  "disableReason": "",
   "accountId": "26270527",
   "name": "FUNDED 26270527",
   "balance": 22333,
   "equity": 22494,
   "pnl": -2667,
-  "status": "active",
-  "type": "funded",
   "stats": {
     "_id": "69e2a2f623bdaaa96c014896",
     "accountId": "26270527",

@@ -18,26 +18,26 @@ export default function TradeHistory({ trades, formatCurrency }: Props) {
         {trades.map((trade) => {
           const isWin = trade.pnl > 0;
           return (
-            <div key={trade.tradeId} className="mobile-list-item">
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12 }}>
-                <div>
-                  <div style={{ fontWeight: 700, fontSize: 16 }}>{trade.instrument}</div>
-                  <div style={{ fontSize: 12, color: 'var(--text-muted)' }}>
-                    {new Date(trade.openTime).toLocaleDateString()} {new Date(trade.openTime).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
-                  </div>
-                </div>
-                <div style={{ textAlign: 'right' }}>
-                  <div style={{ fontWeight: 800, fontSize: 18, color: isWin ? 'var(--success-neon)' : 'var(--danger-neon)' }}>
-                    {formatCurrency(trade.pnl)}
-                  </div>
-                  <span className="tag" style={{ color: trade.direction === 'buy' ? 'var(--accent-cyan)' : 'var(--danger-neon)', marginTop: 4, display: 'inline-block' }}>
+            <div key={trade.tradeId} className="mobile-list-item" style={{ padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ fontWeight: 700, fontSize: '15px' }}>{trade.instrument}</span>
+                  <span style={{ fontSize: '10px', padding: '2px 6px', borderRadius: '4px', background: trade.direction === 'buy' ? 'rgba(0, 255, 255, 0.1)' : 'rgba(255, 51, 102, 0.1)', color: trade.direction === 'buy' ? 'var(--accent-cyan)' : 'var(--danger-neon)', fontWeight: 600 }}>
                     {trade.direction === 'buy' ? 'MUA' : 'BÁN'}
                   </span>
                 </div>
+                <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>
+                  {new Date(trade.openTime).toLocaleDateString()} {new Date(trade.openTime).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} <span style={{ opacity: 0.5 }}>•</span> ⏱ {trade.duration}
+                </div>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'monospace', fontSize: 13, color: 'var(--text-muted)', background: 'var(--bg-subtle)', padding: '12px 16px', borderRadius: 8, fontWeight: 500 }}>
-                <div>{trade.openPrice} → {trade.closePrice}</div>
-                <div>{trade.duration}</div>
+
+              <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                <div style={{ fontWeight: 700, fontSize: '15px', color: isWin ? 'var(--success-neon)' : 'var(--danger-neon)' }}>
+                  {formatCurrency(trade.pnl)}
+                </div>
+                <div style={{ fontFamily: 'monospace', fontSize: '11px', color: 'var(--text-dim)' }}>
+                  {trade.openPrice} → {trade.closePrice}
+                </div>
               </div>
             </div>
           );

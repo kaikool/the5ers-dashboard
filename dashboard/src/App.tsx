@@ -118,24 +118,47 @@ function App() {
         fees: 0,
         openTime: t.open_date,
         closeTime: t.close_date,
-        duration: 'N/A'
+        duration: getDuration(t.open_date, t.close_date)
       }));
       
       // Sắp xếp lệnh theo thời gian mở giảm dần (mới nhất xếp trước)
       trades.sort((a, b) => new Date(b.openTime).getTime() - new Date(a.openTime).getTime());
 
       // Reconstruct detail
+      const rawStats = account._rawStats || {};
+      const winRateRaw = rawStats.winRate || 0;
+      
       const detail: AccountDetail = {
         ...account,
-        ...account._rawStats,
+        ...rawStats,
         trades,
-        stats: account._rawStats
+        stats: rawStats,
+        winRate: (winRateRaw > 0 && winRateRaw <= 1) ? winRateRaw * 100 : winRateRaw,
+        dailyDrawdown: rawStats.balanceDetails?.dailyProfitAndLoss,
+        dailyDrawdownLimit: rawStats.balanceDetails?.allowedDailyLosses,
+        maxDrawdown: rawStats.balanceDetails?.profitAndLoss,
+        maxDrawdownLimit: rawStats.balanceDetails?.maxLoss ? -rawStats.balanceDetails.maxLoss : undefined
       };
 
       setDetailData(detail);
     } catch (err) {
       console.error('Lỗi tải lệnh giao dịch:', err);
     }
+  }
+
+  function getDuration(open: string, close: string) {
+    if (!open || !close) return 'N/A';
+    const diffMs = new Date(close).getTime() - new Date(open).getTime();
+    if (diffMs < 0 || isNaN(diffMs)) return 'N/A';
+    
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMins / 60);
+    const diffDays = Math.floor(diffHours / 24);
+    
+    if (diffDays > 0) return `${diffDays}d ${diffHours % 24}h`;
+    if (diffHours > 0) return `${diffHours}h ${diffMins % 60}m`;
+    if (diffMins > 0) return `${diffMins}m`;
+    return '< 1m';
   }
 
   function formatCurrency(value: number): string {

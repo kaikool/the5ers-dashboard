@@ -1,11 +1,35 @@
 {
+  "highStakesWithdrawalCount": 0,
+  "_id": "690a7a90ea74b756f1f56849",
+  "userId": "c7e984df-d505-4af2-95cf-148d0bc64880",
+  "purchaseId": "3623245",
+  "programId": "65ef32cc0f42d19f5e0de47a",
+  "previousProgramId": "65ef320d0f42d19f5e0de44e",
+  "tsAccount": "25721903",
+  "tsAccountId": "25721903",
+  "tradingSystem": "meta-trader-5",
+  "status": "disabled",
+  "type": "evaluation",
+  "state": {
+    "terminated": true,
+    "dailyPause": false,
+    "dailyLoss": true,
+    "target": false,
+    "expired": false
+  },
+  "boosters": [],
+  "creationRetries": 0,
+  "config": {
+    "hasSeen": false
+  },
+  "createdAt": "2025-11-04T22:13:36.594Z",
+  "updatedAt": "2025-11-06T04:41:31.338Z",
+  "assetClass": "forex",
   "accountId": "25721903",
   "name": "EVALUATION 25721903",
   "balance": 54139.45,
   "equity": 54139.45,
   "pnl": -5860.549999999998,
-  "status": "active",
-  "type": "evaluation",
   "stats": {
     "totalRebatedFees": 0,
     "_id": "690a92de23104c7388e05a5e",

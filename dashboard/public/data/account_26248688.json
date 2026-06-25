@@ -1,11 +1,38 @@
 {
+  "_id": "69d968998b03b66f011e3390",
+  "userId": "c7e984df-d505-4af2-95cf-148d0bc64880",
+  "purchaseId": "1000135375",
+  "programId": "69552de7114e111693603327",
+  "tradingSystem": "meta-trader-5",
+  "status": "disabled",
+  "type": "evaluation",
+  "state": {
+    "terminated": false,
+    "dailyPause": false,
+    "target": true
+  },
+  "boosters": [],
+  "creationRetries": 0,
+  "config": {
+    "hasSeen": false
+  },
+  "metadata": {
+    "correlationHash": "187c1d1621ae33de54cfec2ab33d7c9bda00a2d239b405a3f39cea4d3d30da42",
+    "initialFunds": 0,
+    "initialProfitCredits": 0,
+    "initialRefundCredits": 0
+  },
+  "assetClass": "forex",
+  "createdAt": "2026-04-10T21:16:09.710Z",
+  "updatedAt": "2026-04-17T21:15:33.754Z",
+  "tsAccount": "26248688",
+  "tsAccountId": "26248688",
+  "highStakesWithdrawalCount": 0,
   "accountId": "26248688",
   "name": "EVALUATION 26248688",
   "balance": 26527.8,
   "equity": 26527.8,
   "pnl": 1527.8000000000002,
-  "status": "active",
-  "type": "evaluation",
   "stats": {
     "_id": "69d9689b23bdaaa96cb3b1c6",
     "accountId": "26248688",

@@ -25,10 +25,19 @@ jobs:
           THE5ERS_COOKIES: ${{ secrets.THE5ERS_COOKIES }}
           GOOGLE_EMAIL: ${{ secrets.GOOGLE_EMAIL }}
           GOOGLE_PASSWORD: ${{ secrets.GOOGLE_PASSWORD }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          THE5ERS_TOKEN: ${{ secrets.THE5ERS_TOKEN }}
+          THE5ERS_REFRESH_TOKEN: ${{ secrets.THE5ERS_REFRESH_TOKEN }}
         run: |
           mkdir -p scraper/data
           cd scraper
-          node scraper.mjs
+          touch .env
+          echo "SUPABASE_URL=$SUPABASE_URL" >> .env
+          echo "SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY" >> .env
+          echo "THE5ERS_TOKEN=$THE5ERS_TOKEN" >> .env
+          echo "THE5ERS_REFRESH_TOKEN=$THE5ERS_REFRESH_TOKEN" >> .env
+          node fetch_data.mjs
       
       - name: Copy data & build
         run: |

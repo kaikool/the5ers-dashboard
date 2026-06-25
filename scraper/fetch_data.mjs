@@ -199,7 +199,7 @@ async function run() {
 
         // Sync to Supabase in background
         if (supabase) {
-            await syncAccount(overview, statsData);
+            await syncAccount(overview, { ...statsData, balanceDetails: balanceData });
             await syncTrades(accId, positionsData);
         }
 
