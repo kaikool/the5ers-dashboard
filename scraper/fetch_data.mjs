@@ -141,7 +141,7 @@ async function run() {
     // -------------------------------------
     
     // Bỏ filter demo để lấy toàn bộ danh sách tài khoản
-    const activeAccounts = accounts;
+    const accountsRes = accounts;
     
     const profileData = {
       scrapedAt: new Date().toISOString(),
@@ -149,9 +149,25 @@ async function run() {
       accounts: []
     };
 
-    for (const acc of activeAccounts) {
-      const accId = acc.externalId;
-      console.log(`\n⏳ Lấy dữ liệu tài khoản ${accId}...`);
+    let existingAccounts = [];
+    if (supabase) {
+        const { data } = await supabase.from('accounts').select('account_id, status');
+        if (data) existingAccounts = data;
+    }
+
+    if (accountsRes && accountsRes.length > 0) {
+      console.log(`\n📦 Tìm thấy ${accountsRes.length} tài khoản. Đang lấy chi tiết...`);
+      for (const acc of accountsRes) {
+        const accId = acc.externalId;
+        
+        // Optimize: Skip disabled accounts to save time and API requests
+        const existingAcc = existingAccounts.find(a => a.account_id === String(accId));
+        if (existingAcc && existingAcc.status === 'disabled') {
+            console.log(`⏭️ Bỏ qua ${accId} vì đã vô hiệu hóa (tiết kiệm thời gian)`);
+            continue;
+        }
+
+        console.log(`⏳ Lấy dữ liệu tài khoản ${accId}...`);
       
       try {
         let balanceData = { balance: 0, equity: 0 };
