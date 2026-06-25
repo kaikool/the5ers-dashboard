@@ -40,3 +40,10 @@ CREATE TABLE purchases (
     status TEXT NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE NOT NULL
 );
+
+-- Bảng cấu hình hệ thống (lưu Token xoay vòng)
+CREATE TABLE app_config (
+    key TEXT PRIMARY KEY,
+    value TEXT NOT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now())
+);

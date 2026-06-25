@@ -104,3 +104,21 @@ export async function syncPurchases(purchases) {
         console.error(`[Supabase] Lỗi đồng bộ purchases:`, error.message);
     }
 }
+
+/**
+ * Get config value
+ */
+export async function getConfig(key) {
+    if (!supabase) return null;
+    const { data } = await supabase.from('app_config').select('value').eq('key', key).single();
+    return data ? data.value : null;
+}
+
+/**
+ * Set config value
+ */
+export async function setConfig(key, value) {
+    if (!supabase) return;
+    const { error } = await supabase.from('app_config').upsert({ key, value, updated_at: new Date().toISOString() });
+    if (error) console.error(`[Supabase] Lỗi lưu cấu hình ${key}:`, error.message);
+}

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { supabase, syncAccount, syncTrades, syncPurchases } from './supabase.mjs';
+import { supabase, syncAccount, syncTrades, syncPurchases, getConfig, setConfig } from './supabase.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -28,14 +28,24 @@ async function fetchApi(path) {
 async function run() {
   try {
     let activeToken = THE5ERS_TOKEN_ENV;
+    let currentRefreshToken = THE5ERS_REFRESH_TOKEN;
+    
+    // Đọc token mới nhất từ Supabase (tránh bị văng khi chạy trên Github Actions)
+    if (supabase) {
+        const dbRefreshToken = await getConfig('THE5ERS_REFRESH_TOKEN');
+        if (dbRefreshToken) {
+            console.log('☁️ Đã lấy Refresh Token mới nhất từ Supabase');
+            currentRefreshToken = dbRefreshToken;
+        }
+    }
     
     // Auto-refresh token if Refresh Token is provided
-    if (THE5ERS_REFRESH_TOKEN) {
+    if (currentRefreshToken) {
         console.log('🔄 Đang tự động làm mới Token bằng DSR...');
         const refreshRes = await fetch('https://api.descope.com/v1/auth/refresh', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${DESCOPE_PROJECT_ID}:${THE5ERS_REFRESH_TOKEN}`,
+                'Authorization': `Bearer ${DESCOPE_PROJECT_ID}:${currentRefreshToken}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({})
@@ -55,12 +65,21 @@ async function run() {
                     newRefreshToken = setCookie.split('DSR=')[1].split(';')[0];
                 }
             }
-            if (newRefreshToken && newRefreshToken !== THE5ERS_REFRESH_TOKEN) {
-                console.log('🔄 Đã nhận được Refresh Token mới, đang lưu vào .env...');
+            if (newRefreshToken && newRefreshToken !== currentRefreshToken) {
+                console.log('🔄 Đã nhận được Refresh Token mới, đang lưu vào .env và Supabase...');
                 const envPath = path.join(__dirname, '.env');
-                let envContent = fs.readFileSync(envPath, 'utf8');
-                envContent = envContent.replace(THE5ERS_REFRESH_TOKEN, newRefreshToken);
-                fs.writeFileSync(envPath, envContent);
+                if (fs.existsSync(envPath)) {
+                    let envContent = fs.readFileSync(envPath, 'utf8');
+                    if (envContent.includes('THE5ERS_REFRESH_TOKEN=')) {
+                        envContent = envContent.replace(/THE5ERS_REFRESH_TOKEN=.*/g, `THE5ERS_REFRESH_TOKEN=${newRefreshToken}`);
+                    } else {
+                        envContent += `\nTHE5ERS_REFRESH_TOKEN=${newRefreshToken}`;
+                    }
+                    fs.writeFileSync(envPath, envContent);
+                }
+                if (supabase) {
+                    await setConfig('THE5ERS_REFRESH_TOKEN', newRefreshToken);
+                }
             }
         } else {
             console.error('❌ Cảnh báo: Lỗi làm mới Token, sẽ sử dụng Token cũ.', await refreshRes.text());
