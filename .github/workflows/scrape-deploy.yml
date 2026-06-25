@@ -1,6 +1,10 @@
 name: Scrape The5ers Dashboard
 
 on:
+  push:
+    branches:
+      - master
+      - main
   schedule:
     - cron: '0 1 * * *'   # 8h VN mỗi ngày
   workflow_dispatch:
