@@ -66,45 +66,50 @@ async function tryRefreshToken(refreshToken, currentToken) {
   return null;
 }
 
-async function puppeteerLogin(cookies) {
+async function puppeteerLogin() {
   if (!puppeteerExtra || !stealthPlugin) {
     console.log('   ⚠️ Puppeteer not available');
     return null;
   }
-  console.log('🎭 Trying Puppeteer login...');
+  console.log('🎭 Login with profile...');
+  
+  // Download profile từ URL nếu có
+  const profileDir = '/tmp/chrome-profile';
+  const profileUrl = process.env.CHROME_PROFILE_URL;
+  if (profileUrl) {
+    const resp = await fetch(profileUrl);
+    const buffer = Buffer.from(await resp.arrayBuffer());
+    writeFileSync('/tmp/profile.zip', buffer);
+    await require('child_process').execSync(`unzip -o /tmp/profile.zip -d ${profileDir}`, { stdio: 'pipe' });
+  }
+  
   puppeteerExtra.use(stealthPlugin());
   const browser = await puppeteerExtra.launch({
     headless: 'new',
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+    args: [
+      '--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage',
+      profileDir ? `--user-data-dir=${profileDir}` : '',
+    ].filter(Boolean),
   });
+  
   const page = await browser.newPage();
   await page.setViewport({ width: 1440, height: 900 });
   await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36');
-  await page.goto(`${HUB}/en`, { waitUntil: 'domcontentloaded', timeout: 15000 });
-  await page.evaluate((cks) => {
-    for (const c of cks) {
-      const s = (c.sameSite || 'lax').toLowerCase();
-      const ss = s === 'no_restriction' ? 'None' : s.charAt(0).toUpperCase() + s.slice(1);
-      document.cookie = `${c.name}=${c.value}; path=/; domain=${(c.domain || '').replace(/^\./, '') || 'hub.the5ers.com'}; secure; SameSite=${ss}`;
-    }
-    localStorage.setItem('is-logged-in', 'true');
-    localStorage.setItem('idp-provider', 'descope');
-    localStorage.setItem('token-sync-status', 'true');
-    localStorage.setItem('DSRCN', 'DSR');
-    localStorage.setItem('cx-fingerprint', '1ed2be65-ddf3-4c33-85a6-88613d6fdf7c');
-    localStorage.setItem('dls_last_user_login_id', 'phuk.td@gmail.com');
-    localStorage.setItem('dls_last_user_display_name', 'Đình Phúc Trần');
-  }, cookies);
+  
   await page.goto(`${HUB}/en/dashboard`, { waitUntil: 'networkidle0', timeout: 30000 });
-  await new Promise(r => setTimeout(r, 5000));
+  await new Promise(r => setTimeout(r, 8000)); // đợi Descope SDK refresh
+  
   const avatar = await page.evaluate(() => !!document.querySelector('[class*="avatar"]'));
   if (avatar) {
     const pageCookies = await page.cookies();
     const ds = pageCookies.find(c => c.name === 'DS');
     const dsr = pageCookies.find(c => c.name === 'DSR');
+    console.log('   ✅ Login success!');
     await browser.close();
     return { token: ds?.value, refreshToken: dsr?.value };
   }
+  
+  console.log('   ❌ Login failed. Cần export Chrome profile mới.');
   await browser.close();
   return null;
 }
@@ -169,7 +174,7 @@ async function main() {
         }
       }
     }
-    const result = await puppeteerLogin(cookies);
+    const result = await puppeteerLogin();
     if (result) {
       const data = await scrapeAll(result.token);
       writeFileSync('data/profile.json', JSON.stringify(data, null, 2));

@@ -23,6 +23,8 @@ jobs:
       - name: Scrape The5ers
         env:
           THE5ERS_COOKIES: ${{ secrets.THE5ERS_COOKIES }}
+          GOOGLE_EMAIL: ${{ secrets.GOOGLE_EMAIL }}
+          GOOGLE_PASSWORD: ${{ secrets.GOOGLE_PASSWORD }}
         run: |
           mkdir -p scraper/data
           cd scraper
