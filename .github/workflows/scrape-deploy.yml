@@ -1,0 +1,45 @@
+name: Scrape + Deploy The5ers Dashboard
+
+on:
+  schedule:
+    - cron: '0 1 * * *'   # 8h VN mỗi ngày
+  workflow_dispatch:       # chạy tay
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      
+      - name: Install Puppeteer
+        run: |
+          cd scraper
+          npm ci
+          npx puppeteer browsers install chrome
+      
+      - name: Scrape The5ers
+        env:
+          THE5ERS_COOKIES: ${{ secrets.THE5ERS_COOKIES }}
+        run: |
+          mkdir -p scraper/data
+          cd scraper
+          node scraper.mjs
+      
+      - name: Copy data & build dashboard
+        run: |
+          mkdir -p dashboard/public/data
+          cp scraper/data/profile.json dashboard/public/data/ 2>/dev/null || true
+          cd dashboard && npm ci && npm run build
+      
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+          working-directory: ./dashboard

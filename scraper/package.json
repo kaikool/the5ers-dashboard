@@ -1,0 +1,11 @@
+{
+  "name": "the5ers-scraper",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "playwright": "^1.52.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "puppeteer": "^24.0.0"
+  }
+}

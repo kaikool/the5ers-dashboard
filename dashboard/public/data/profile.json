@@ -1,0 +1,62 @@
+{
+  "userName": "Trader",
+  "email": "trader@example.com",
+  "scrapedAt": "2026-06-25T14:30:00.000Z",
+  "accounts": [
+    {
+      "accountId": "EVA-001",
+      "name": "Evaluation Phase 1",
+      "type": "evaluation",
+      "status": "active",
+      "balance": 10500,
+      "equity": 10620,
+      "pnl": 620,
+      "pnlPercent": 5.9,
+      "currency": "USD"
+    },
+    {
+      "accountId": "EVA-002",
+      "name": "Evaluation Phase 2",
+      "type": "evaluation",
+      "status": "active",
+      "balance": 20200,
+      "equity": 20050,
+      "pnl": 200,
+      "pnlPercent": 1.0,
+      "currency": "USD"
+    },
+    {
+      "accountId": "FND-001",
+      "name": "Funded Account",
+      "type": "funded",
+      "status": "active",
+      "balance": 50200,
+      "equity": 50380,
+      "pnl": 1800,
+      "pnlPercent": 3.6,
+      "currency": "USD"
+    },
+    {
+      "accountId": "EVA-003",
+      "name": "Express Challenge",
+      "type": "evaluation",
+      "status": "breached",
+      "balance": 9500,
+      "equity": 9400,
+      "pnl": -500,
+      "pnlPercent": -5.0,
+      "currency": "USD"
+    },
+    {
+      "accountId": "FND-002",
+      "name": "Funded +50%",
+      "type": "funded",
+      "status": "active",
+      "balance": 75000,
+      "equity": 75100,
+      "pnl": 1100,
+      "pnlPercent": 1.47,
+      "currency": "USD"
+    }
+  ]
+}
